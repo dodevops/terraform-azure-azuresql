@@ -34,9 +34,11 @@ No modules.
 
 The following resources are used by this module:
 
-- [azurerm_sql_database.azuresqldb](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_database) (resource)
-- [azurerm_sql_firewall_rule.azure-sql-enable-access-firewall](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_firewall_rule) (resource)
-- [azurerm_sql_server.azuresqldbsrv](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/sql_server) (resource)
+- [azurerm_mssql_database.azuresqldb](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_database) (resource)
+- [azurerm_mssql_database_extended_auditing_policy.azuresql-audit-policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_database_extended_auditing_policy) (resource)
+- [azurerm_mssql_firewall_rule.azure-sql-enable-access-firewall](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_firewall_rule) (resource)
+- [azurerm_mssql_server.azuresqldbsrv](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_server) (resource)
+- [azurerm_storage_account.azuresql-audit-storage-account](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account) (resource)
 
 ## Required Inputs
 
@@ -89,6 +91,22 @@ Description: Edition to use
 Type: `string`
 
 Default: `"Standard"`
+
+### enable\_audit
+
+Description: Enable audit of database access and usage
+
+Type: `bool`
+
+Default: `true`
+
+### public\_access
+
+Description: Whether or not public network access is allowed for this server
+
+Type: `bool`
+
+Default: `false`
 
 ### sqlserver\_version
 

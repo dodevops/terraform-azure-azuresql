@@ -45,3 +45,15 @@ variable "suffix" {
   description = "suffix for special databases"
   default     = ""
 }
+
+variable "public_access" {
+  type        = bool
+  description = "Whether or not public network access is allowed for this server"
+  default     = false
+}
+
+variable "enable_audit" {
+  type        = bool
+  description = "Enable audit of database access and usage"
+  default     = true
+}
