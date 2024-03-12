@@ -1,4 +1,4 @@
-# Public IP for Azure
+# Opinionated Azure SQL databases
 
 ## Introduction
 
@@ -18,13 +18,17 @@ module "azure-basics" {
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-No requirements.
+The following requirements are needed by this module:
+
+- terraform (>=1.0.0)
+
+- azurerm (>=3.0.0)
 
 ## Providers
 
 The following providers are used by this module:
 
-- azurerm
+- azurerm (>=3.0.0)
 
 ## Modules
 
@@ -56,12 +60,6 @@ Description: Azure location to use
 
 Type: `string`
 
-### performance\_class
-
-Description: Which performance class to use
-
-Type: `string`
-
 ### project
 
 Description: Three letter project key
@@ -74,6 +72,12 @@ Description: Azure Resource Group to use
 
 Type: `string`
 
+### sku\_name
+
+Description: Which SKU to use - see https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_database#sku_name
+
+Type: `string`
+
 ### stage
 
 Description: Stage for this ip
@@ -83,14 +87,6 @@ Type: `string`
 ## Optional Inputs
 
 The following input variables are optional (have default values):
-
-### edition
-
-Description: Edition to use
-
-Type: `string`
-
-Default: `"Standard"`
 
 ### enable\_audit
 
@@ -143,7 +139,6 @@ Description: n/a
 
 ## Development
 
-Use [terraform-docs](https://terraform-docs.io/) to generate the API documentation by running
+Use [the terraform module tools](https://github.com/dodevops/terraform-module-tools) to check and generate the documentation by running
 
-    terraform fmt .
-    terraform-docs .
+    docker run -v "$PWD":/terraform ghcr.io/dodevops/terraform-module-tools:latest

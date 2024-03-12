@@ -10,22 +10,17 @@ resource "azurerm_mssql_server" "azuresqldbsrv" {
 }
 
 resource "azurerm_mssql_database" "azuresqldb" {
-  name                             = "${lower(var.project)}${lower(var.stage)}db${var.suffix}"
-  server_id                        = azurerm_mssql_server.azuresqldbsrv.id
-  location                         = var.location
-  resource_group_name              = var.resource_group
-  server_name                      = azurerm_mssql_server.azuresqldbsrv.name
-  edition                          = var.edition
-  requested_service_objective_name = var.performance_class
+  name      = "${lower(var.project)}${lower(var.stage)}db${var.suffix}"
+  server_id = azurerm_mssql_server.azuresqldbsrv.id
+  sku_name  = var.sku_name
 }
 
 resource "azurerm_mssql_firewall_rule" "azure-sql-enable-access-firewall" {
-  name                = "${lower(var.project)}${lower(var.stage)}dbsrvaccessfromazure${var.suffix}"
-  server_id           = azurerm_mssql_server.azuresqldbsrv.id
-  resource_group_name = var.resource_group
-  server_name         = azurerm_mssql_server.azuresqldbsrv.name
-  start_ip_address    = "0.0.0.0"
-  end_ip_address      = "0.0.0.0"
+  count            = var.public_access ? 1 : 0
+  name             = "${lower(var.project)}${lower(var.stage)}dbsrvaccessfromazure${var.suffix}"
+  server_id        = azurerm_mssql_server.azuresqldbsrv.id
+  start_ip_address = "0.0.0.0"
+  end_ip_address   = "0.0.0.0"
 }
 
 resource "azurerm_storage_account" "azuresql-audit-storage-account" {

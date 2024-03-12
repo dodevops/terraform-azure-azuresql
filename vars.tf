@@ -18,15 +18,9 @@ variable "stage" {
   description = "Stage for this ip"
 }
 
-variable "edition" {
+variable "sku_name" {
   type        = string
-  description = "Edition to use"
-  default     = "Standard"
-}
-
-variable "performance_class" {
-  type        = string
-  description = "Which performance class to use"
+  description = "Which SKU to use - see https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_database#sku_name"
 }
 
 variable "sqlserver_version" {
